@@ -297,6 +297,11 @@ const NEWS_POSTS = [
     title: "Latest farm update",
     content: "Our recent update: please read the announcement on Facebook for details and dates."
   },
+  {
+    url: "https://www.facebook.com/share/r/18zE5ojYVw/",
+    title: "Market day update",
+    content: "Market day schedule and availability — check Facebook for full details."
+  },
 ];
 
 function buildNewsCard(post) {
