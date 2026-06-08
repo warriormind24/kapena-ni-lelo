@@ -5,7 +5,5 @@
   "scripts": {
     "set-secrets": "node scripts/set-github-secrets.js"
   },
-  "dependencies": {
-    "tweetsodium": "^1.0.1"
-  }
+  "dependencies": {}
 }
