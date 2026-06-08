@@ -1,3 +1,4 @@
 .vscode/
 *.pptx
 tools/
+node_modules/
