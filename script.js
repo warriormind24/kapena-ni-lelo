@@ -302,6 +302,11 @@ const NEWS_POSTS = [
     title: "Market day update",
     content: "Market day schedule and availability — check Facebook for full details."
   },
+  {
+    url: "https://www.facebook.com/photo.php?fbid=122271566744068184&set=a.122101900346068184&type=3&ref=embed_post",
+    title: "Farm photo — market update",
+    content: "Photo and short update — open on Facebook for full details."
+  }
 ];
 
 function buildNewsCard(post) {
