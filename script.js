@@ -290,6 +290,53 @@ for (const tab of productTabs) {
   });
 }
 
+/* Service filter */
+const serviceTabs = document.querySelectorAll(".service-tabs__btn");
+const serviceCards = Array.from(document.querySelectorAll("#servicesGrid .service-card"));
+
+function filterServices(filter) {
+  for (const tab of serviceTabs) {
+    const active = tab.dataset.serviceFilter === filter;
+    tab.classList.toggle("is-active", active);
+    tab.setAttribute("aria-selected", String(active));
+  }
+
+  for (const card of serviceCards) {
+    const type = card.dataset.service || "";
+    let show = false;
+    if (filter === "all") show = true;
+    else if (filter === "soon") show = type === "soon";
+    else show = type === filter;
+
+    card.classList.toggle("is-hidden", !show);
+    if (show) card.style.animation = "stagger-in 0.4s var(--ease) both";
+  }
+}
+
+for (const tab of serviceTabs) {
+  tab.addEventListener("click", () => {
+    filterServices(tab.dataset.serviceFilter || "all");
+  });
+}
+
+document.querySelectorAll("[data-notify]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const service = btn.getAttribute("data-notify") || "New service";
+    const subject = encodeURIComponent(`Kapena Ni Lelo — Interest in ${service}`);
+    const body = encodeURIComponent(
+      [
+        "Hello Kapena Ni Lelo Poultry Farm,",
+        "",
+        `I would like to be notified when "${service}" launches.`,
+        "",
+        "Name:",
+        "Phone or email:",
+      ].join("\n")
+    );
+    window.location.href = `mailto:kapananilelo@gmail.com?subject=${subject}&body=${body}`;
+  });
+});
+
 /* Form */
 const quoteForm = document.querySelector("#quoteForm");
 const formError = document.querySelector("#formError");
