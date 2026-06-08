@@ -282,6 +282,16 @@ const NEWS_POSTS = [
     title: "Training workshop registration",
     content: "Registration is open for our upcoming poultry management workshop — limited seats available."
   },
+  {
+    url: "https://www.facebook.com/share/r/1CqgZTht7F/",
+    title: "Community announcement",
+    content: "Important community update — see full post on our Facebook page."
+  },
+  {
+    url: "https://www.facebook.com/share/r/1CqgZTht7F/",
+    title: "Community announcement",
+    content: "Important community update — see full post on our Facebook page."
+  },
 ];
 
 function buildNewsCard(post) {
