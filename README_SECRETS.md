@@ -9,6 +9,7 @@ Install and run
 
 ```bash
 npm install
+# Example (replace the values):
 GITHUB_TOKEN="ghp_..." \
 VERCEL_TOKEN="vercel_..." \
 VERCEL_ORG_ID="org_..." \
