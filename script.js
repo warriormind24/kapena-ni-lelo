@@ -267,23 +267,48 @@ if (lightbox) {
 
 /* News: render embedded Facebook posts supplied by links */
 const NEWS_POSTS = [
-  "https://www.facebook.com/share/v/1DuAJmRcXF/",
-  "https://www.facebook.com/share/r/1R2xHwFMbg/",
-  "https://www.facebook.com/share/r/1H8cvcvJ1o/",
+  {
+    url: "https://www.facebook.com/share/v/1DuAJmRcXF/",
+    title: "Kapena Ni Lelo — Community outreach",
+    content: "Join us this weekend for community distribution and farm tours."
+  },
+  {
+    url: "https://www.facebook.com/share/r/1R2xHwFMbg/",
+    title: "New supply routes announced",
+    content: "We now deliver to additional districts across the Copperbelt. Contact us for rates."
+  },
+  {
+    url: "https://www.facebook.com/share/r/1H8cvcvJ1o/",
+    title: "Training workshop registration",
+    content: "Registration is open for our upcoming poultry management workshop — limited seats available."
+  },
 ];
 
-function buildNewsCard(postUrl) {
+function buildNewsCard(post) {
   const card = document.createElement('div');
   card.className = 'news-card';
 
-  // Facebook plugin embed URL
-  const src = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(postUrl)}&show_text=true&width=500`;
+  // Header: title + content (if provided)
+  const header = document.createElement('div');
+  header.className = 'news-card__header';
+  const titleEl = document.createElement('h3');
+  titleEl.className = 'news-card__title';
+  titleEl.textContent = post.title || 'Facebook post';
+  const contentEl = document.createElement('p');
+  contentEl.className = 'news-card__content';
+  contentEl.textContent = post.content || '';
+  header.appendChild(titleEl);
+  if (post.content) header.appendChild(contentEl);
+  card.appendChild(header);
+
+  // Facebook plugin embed URL (fallback to link if FB blocks)
+  const src = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(post.url)}&show_text=true&width=500`;
 
   const iframe = document.createElement('iframe');
   iframe.src = src;
   iframe.setAttribute('scrolling', 'no');
   iframe.setAttribute('loading', 'lazy');
-  iframe.setAttribute('title', 'Facebook post');
+  iframe.setAttribute('title', post.title || 'Facebook post');
   iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
 
   // Some browsers/FB will block embedding; provide a fallback link
@@ -291,7 +316,7 @@ function buildNewsCard(postUrl) {
     card.replaceChildren();
     const fallback = document.createElement('div');
     fallback.className = 'news-fallback';
-    fallback.innerHTML = `Post: <a href="${postUrl}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
+    fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
     card.appendChild(fallback);
   });
 

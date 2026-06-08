@@ -405,6 +405,55 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
   font-weight: 700;
 }
 
+/* News */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.news-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  padding: 0;
+}
+
+.news-card iframe {
+  width: 100%;
+  height: 420px;
+  border: 0;
+  display: block;
+}
+
+.news-card__header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(26,94,61,0.02), transparent);
+}
+
+.news-card__title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+
+.news-card__content {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.news-fallback {
+  padding: 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
 @media (min-width: 900px) {
   .service-card--featured {
     grid-column: span 2;
