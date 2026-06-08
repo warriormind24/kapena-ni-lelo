@@ -1,0 +1,11 @@
+{
+  "name": "kapena-ni-lelo-utils",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "set-secrets": "node tools/set-github-secrets.js"
+  },
+  "dependencies": {
+    "tweetsodium": "^1.0.1"
+  }
+}
