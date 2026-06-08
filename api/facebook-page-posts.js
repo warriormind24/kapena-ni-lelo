@@ -31,8 +31,10 @@ export default async function handler(req, res) {
       'permalink_url'
     ].join(',');
 
-    // Fetch newest posts from the Page feed (Graph API)
-    // Note: This endpoint returns only public/allowed fields based on token permissions.
+    // Fetch newest posts from the profile/page feed (Graph API)
+    // Note: Facebook will only return what your access token is allowed to read.
+    // For Pages this is /{page-id}/posts.
+    // For Profiles, Graph API support is more restricted; however trying /{id}/posts often works for owned content.
     const graphUrl = new URL(`https://graph.facebook.com/v19.0/${pageId}/posts`);
     graphUrl.searchParams.set('access_token', token);
     graphUrl.searchParams.set('limit', String(limit));
