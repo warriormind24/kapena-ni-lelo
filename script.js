@@ -265,6 +265,50 @@ if (lightbox) {
   });
 }
 
+/* News: render embedded Facebook posts supplied by links */
+const NEWS_POSTS = [
+  "https://www.facebook.com/share/v/1DuAJmRcXF/",
+  "https://www.facebook.com/share/r/1R2xHwFMbg/",
+  "https://www.facebook.com/share/r/1H8cvcvJ1o/",
+];
+
+function buildNewsCard(postUrl) {
+  const card = document.createElement('div');
+  card.className = 'news-card';
+
+  // Facebook plugin embed URL
+  const src = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(postUrl)}&show_text=true&width=500`;
+
+  const iframe = document.createElement('iframe');
+  iframe.src = src;
+  iframe.setAttribute('scrolling', 'no');
+  iframe.setAttribute('loading', 'lazy');
+  iframe.setAttribute('title', 'Facebook post');
+  iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+
+  // Some browsers/FB will block embedding; provide a fallback link
+  iframe.addEventListener('error', () => {
+    card.replaceChildren();
+    const fallback = document.createElement('div');
+    fallback.className = 'news-fallback';
+    fallback.innerHTML = `Post: <a href="${postUrl}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
+    card.appendChild(fallback);
+  });
+
+  card.appendChild(iframe);
+  return card;
+}
+
+function renderNews(posts) {
+  const grid = document.querySelector('#newsGrid');
+  if (!grid) return;
+  grid.replaceChildren();
+  posts.forEach((p) => grid.appendChild(buildNewsCard(p)));
+}
+
+// Render initial news posts
+renderNews(NEWS_POSTS);
+
 /* Product filter */
 const productTabs = document.querySelectorAll(".product-tabs__btn");
 const productTiles = Array.from(document.querySelectorAll("#productGrid .tile"));
