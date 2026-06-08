@@ -5,5 +5,7 @@
   "scripts": {
     "set-secrets": "node scripts/set-github-secrets.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@vercel/analytics": "^1.6.1"
+  }
 }
