@@ -292,6 +292,11 @@ const NEWS_POSTS = [
     title: "Community announcement",
     content: "Important community update — see full post on our Facebook page."
   },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02oWHbjSENvykJfzzjE56qyHYYwiwNj67skGP3yV9dD6WapwX9KSVsqNXMq7V5HYAal&id=61552045534404",
+    title: "Latest farm update",
+    content: "Our recent update: please read the announcement on Facebook for details and dates."
+  },
 ];
 
 function buildNewsCard(post) {
