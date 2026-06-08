@@ -374,7 +374,36 @@ function renderNews(posts) {
 }
 
 // Render initial news posts
-renderNews(NEWS_POSTS);
+// If env/endpoint is configured, fetch newest posts automatically.
+async function initNews() {
+  const grid = document.querySelector('#newsGrid');
+  if (!grid) return;
+
+  try {
+    // If you add FACEBOOK_PAGE_ACCESS_TOKEN + FACEBOOK_PAGE_ID on Vercel,
+    // this will fetch newest posts automatically.
+    const resp = await fetch('/api/facebook-page-posts?limit=8');
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data && data.ok === true && Array.isArray(data.posts) && data.posts.length) {
+        const mapped = data.posts.map((p) => ({
+          url: p.url,
+          title: p.title || 'Facebook post',
+          content: p.content || '',
+        }));
+        renderNews(mapped);
+        return;
+      }
+    }
+  } catch (_) {
+    // fall through to hardcoded posts
+  }
+
+  renderNews(NEWS_POSTS);
+}
+
+initNews();
+
 
 /* Product filter */
 const productTabs = document.querySelectorAll(".product-tabs__btn");
