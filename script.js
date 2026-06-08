@@ -326,26 +326,43 @@ function buildNewsCard(post) {
   if (post.content) header.appendChild(contentEl);
   card.appendChild(header);
 
-  // Facebook plugin embed URL (fallback to link if FB blocks)
-  const src = `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(post.url)}&show_text=true&width=500`;
+  const loading = document.createElement('div');
+  loading.className = 'news-card__loading';
+  loading.textContent = 'Loading Facebook post…';
+  card.appendChild(loading);
 
-  const iframe = document.createElement('iframe');
-  iframe.src = src;
-  iframe.setAttribute('scrolling', 'no');
-  iframe.setAttribute('loading', 'lazy');
-  iframe.setAttribute('title', post.title || 'Facebook post');
-  iframe.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+  // Prefer server-side oEmbed proxy to avoid needing the viewer to be logged in.
+  // (Works when deployed on Vercel with an /api/facebook-embed endpoint.)
+  fetch(`/api/facebook-embed?url=${encodeURIComponent(post.url)}`)
+    .then(async (r) => {
+      if (!r.ok) throw new Error(`Request failed: ${r.status}`);
+      return r.json();
+    })
+    .then((data) => {
+      loading.remove();
+      if (!data || data.ok !== true || !data.html) {
+        const fallback = document.createElement('div');
+        fallback.className = 'news-fallback';
+        fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
+        card.appendChild(fallback);
+        return;
+      }
 
-  // Some browsers/FB will block embedding; provide a fallback link
-  iframe.addEventListener('error', () => {
-    card.replaceChildren();
-    const fallback = document.createElement('div');
-    fallback.className = 'news-fallback';
-    fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
-    card.appendChild(fallback);
-  });
+      // Facebook returns an HTML snippet. Inject it so the embed renders without login.
+      // If Facebook refuses, we fall back.
+      card.insertAdjacentHTML('beforeend', data.html);
 
-  card.appendChild(iframe);
+      // Remove the loading placeholder if Facebook rendered but still kept it.
+      // (No-op.)
+    })
+    .catch(() => {
+      loading.remove();
+      const fallback = document.createElement('div');
+      fallback.className = 'news-fallback';
+      fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
+      card.appendChild(fallback);
+    });
+
   return card;
 }
 
