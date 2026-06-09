@@ -163,7 +163,7 @@
       panel.hidden = false;
       launch.setAttribute("aria-expanded", "true");
       if (!body.children.length) {
-        addMsg("Hi! Ask me about delivery, payment, products, or location.", "bot");
+        addMsg("Hi! I’m the Kapena Ni Lelo assistant. Ask me about delivery, payment, products, or our location.", "bot");
       }
       setTimeout(() => input.focus(), 50);
     }
