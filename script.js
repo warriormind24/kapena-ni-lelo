@@ -54,6 +54,7 @@ const GALLERY_IMAGES = [
 ];
 
 const INITIAL_GALLERY = 9;
+const GALLERY_BATCH_SIZE = 9;
 
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector("#nav");
@@ -227,24 +228,62 @@ const galleryMore = document.querySelector("#galleryMore");
 
 function renderGallery(count) {
   if (!galleryGrid) return;
+
+  // Full initial render only; subsequent loads should append.
   galleryGrid.replaceChildren();
+
   const slice = GALLERY_IMAGES.slice(0, count);
   currentGallerySrcs = slice.map((f) => `./${f}`);
+
   slice.forEach((file, i) => {
-    galleryGrid.appendChild(buildGalleryItem(file, i, i > 2));
+    // Eager-load only the first row (first 3–4 tiles) for better LCP.
+    const eager = i < 4;
+    galleryGrid.appendChild(buildGalleryItem(file, i, !eager));
+  });
+}
+
+function appendGalleryItems(startIndex, endIndex) {
+  if (!galleryGrid) return;
+
+  const slice = GALLERY_IMAGES.slice(startIndex, endIndex);
+  const start = startIndex;
+
+  // Expand the lightbox sources to match appended items.
+  currentGallerySrcs = GALLERY_IMAGES.slice(0, endIndex).map((f) => `./${f}`);
+
+  slice.forEach((file, offset) => {
+    const index = start + offset;
+    const eager = index < 4;
+    galleryGrid.appendChild(buildGalleryItem(file, index, !eager));
   });
 }
 
 if (galleryGrid) {
   renderGallery(INITIAL_GALLERY);
+
   if (galleryMore && GALLERY_IMAGES.length > INITIAL_GALLERY) {
     galleryMore.hidden = false;
+
+    let loadedCount = INITIAL_GALLERY;
+
     galleryMore.addEventListener("click", () => {
       galleryMore.disabled = true;
       galleryMore.textContent = "Loading…";
+
+  // Append in batches to avoid expensive DOM rebuilds.
       requestAnimationFrame(() => {
-        renderGallery(GALLERY_IMAGES.length);
-        galleryMore.hidden = true;
+        const nextCount = Math.min(GALLERY_IMAGES.length, loadedCount + GALLERY_BATCH_SIZE);
+        appendGalleryItems(loadedCount, nextCount);
+        loadedCount = nextCount;
+
+        if (loadedCount >= GALLERY_IMAGES.length) {
+          galleryMore.hidden = true;
+          galleryMore.disabled = false;
+          galleryMore.textContent = "Show more photos";
+        } else {
+          galleryMore.disabled = false;
+          galleryMore.textContent = "Show more photos";
+        }
       });
     });
   }
@@ -309,6 +348,40 @@ const NEWS_POSTS = [
   }
 ];
 
+function withTimeout(promise, ms) {
+  return new Promise((resolve, reject) => {
+    const t = window.setTimeout(() => reject(new Error(`Timeout after ${ms}ms`)), ms);
+    promise
+      .then((v) => {
+        window.clearTimeout(t);
+        resolve(v);
+      })
+      .catch((err) => {
+        window.clearTimeout(t);
+        reject(err);
+      });
+  });
+}
+
+async function fetchFacebookEmbed(url, timeoutMs = 8000, retries = 2) {
+  let lastErr;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const p = fetch(`/api/facebook-embed?url=${encodeURIComponent(url)}`);
+      const r = await withTimeout(p, timeoutMs);
+      if (!r.ok) throw new Error(`Request failed: ${r.status}`);
+      return await r.json();
+    } catch (err) {
+      lastErr = err;
+      if (attempt < retries) {
+        await new Promise((res) => setTimeout(res, 350 * (attempt + 1)));
+        continue;
+      }
+    }
+  }
+  throw lastErr;
+}
+
 function buildNewsCard(post) {
   const card = document.createElement('div');
   card.className = 'news-card';
@@ -333,13 +406,13 @@ function buildNewsCard(post) {
 
   // Prefer server-side oEmbed proxy to avoid needing the viewer to be logged in.
   // (Works when deployed on Vercel with an /api/facebook-embed endpoint.)
-  fetch(`/api/facebook-embed?url=${encodeURIComponent(post.url)}`)
-    .then(async (r) => {
-      if (!r.ok) throw new Error(`Request failed: ${r.status}`);
-      return r.json();
-    })
+  fetchFacebookEmbed(post.url, 8000, 2)
     .then((data) => {
       loading.remove();
+
+      // If Facebook returns HTML, it will render; otherwise fall back.
+      // (No further changes needed here.)
+
       if (!data || data.ok !== true || !data.html) {
         const fallback = document.createElement('div');
         fallback.className = 'news-fallback';
@@ -349,11 +422,7 @@ function buildNewsCard(post) {
       }
 
       // Facebook returns an HTML snippet. Inject it so the embed renders without login.
-      // If Facebook refuses, we fall back.
       card.insertAdjacentHTML('beforeend', data.html);
-
-      // Remove the loading placeholder if Facebook rendered but still kept it.
-      // (No-op.)
     })
     .catch(() => {
       loading.remove();

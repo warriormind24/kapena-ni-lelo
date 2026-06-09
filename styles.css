@@ -976,6 +976,46 @@ h2 {
   margin: 8px 0;
 }
 
+/* Clients icons */
+.tag-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 14px;
+}
+
+.tag-with-icon::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 18px rgba(26, 94, 61, 0.12);
+}
+
+/* Uses real images from your IMG-* gallery */
+.tag-with-icon[data-icon="households"]::before { background-image: url("./IMG-20260523-WA0106.jpg"); }
+.tag-with-icon[data-icon="supermarkets"]::before { background-image: url("./IMG-20260523-WA0105.jpg"); }
+.tag-with-icon[data-icon="hotels"]::before { background-image: url("./IMG-20260523-WA0104.jpg"); }
+.tag-with-icon[data-icon="restaurants"]::before { background-image: url("./IMG-20260523-WA0103.jpg"); }
+.tag-with-icon[data-icon="fastfood"]::before { background-image: url("./IMG-20260523-WA0102.jpg"); }
+.tag-with-icon[data-icon="merchants"]::before { background-image: url("./IMG-20260523-WA0101.jpg"); }
+
+.client-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.client-item__icon {
+  border-radius: 8px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 18px rgba(26, 94, 61, 0.12);
+}
+
 /* Gallery */
 .gallery {
   display: grid;
