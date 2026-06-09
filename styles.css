@@ -125,7 +125,9 @@ em {
 html.js .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+  transition:
+    opacity 0.65s var(--ease),
+    transform 0.65s var(--ease);
 }
 
 html.js .reveal.is-visible {
@@ -137,12 +139,24 @@ html.js .stagger.is-visible > * {
   animation: stagger-in 0.55s var(--ease) backwards;
 }
 
-html.js .stagger.is-visible > *:nth-child(1) { animation-delay: 0.05s; }
-html.js .stagger.is-visible > *:nth-child(2) { animation-delay: 0.12s; }
-html.js .stagger.is-visible > *:nth-child(3) { animation-delay: 0.19s; }
-html.js .stagger.is-visible > *:nth-child(4) { animation-delay: 0.26s; }
-html.js .stagger.is-visible > *:nth-child(5) { animation-delay: 0.33s; }
-html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
+html.js .stagger.is-visible > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+html.js .stagger.is-visible > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+html.js .stagger.is-visible > *:nth-child(3) {
+  animation-delay: 0.19s;
+}
+html.js .stagger.is-visible > *:nth-child(4) {
+  animation-delay: 0.26s;
+}
+html.js .stagger.is-visible > *:nth-child(5) {
+  animation-delay: 0.33s;
+}
+html.js .stagger.is-visible > *:nth-child(6) {
+  animation-delay: 0.4s;
+}
 
 @keyframes stagger-in {
   from {
@@ -156,7 +170,10 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
 }
 
 .interactive-card {
-  transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s,
+    border-color 0.25s;
   cursor: default;
 }
 
@@ -190,7 +207,11 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
   font-weight: 700;
   color: var(--muted);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
   min-height: 44px;
 }
 
@@ -245,7 +266,10 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
   font-weight: 700;
   color: var(--muted);
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
   min-height: 44px;
 }
 
@@ -432,7 +456,7 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
 .news-card__header {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(26,94,61,0.02), transparent);
+  background: linear-gradient(180deg, rgba(26, 94, 61, 0.02), transparent);
 }
 
 .news-card__title {
@@ -474,7 +498,9 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
   border-bottom: 1px solid transparent;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
-  transition: box-shadow 0.3s var(--ease), border-color 0.3s;
+  transition:
+    box-shadow 0.3s var(--ease),
+    border-color 0.3s;
 }
 
 .header.is-scrolled {
@@ -541,7 +567,9 @@ html.js .stagger.is-visible > *:nth-child(6) { animation-delay: 0.4s; }
   color: var(--muted);
   padding: 10px 14px;
   border-radius: 12px;
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
 }
 
 .nav a:hover {
@@ -632,9 +660,21 @@ body.nav-open {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 55% at 50% -5%, rgba(241, 90, 36, 0.22), transparent 58%),
-    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(241, 90, 36, 0.1), transparent 50%),
-    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(26, 94, 61, 0.1), transparent 55%),
+    radial-gradient(
+      ellipse 70% 55% at 50% -5%,
+      rgba(241, 90, 36, 0.22),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 20%,
+      rgba(241, 90, 36, 0.1),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 80% 50% at 50% 100%,
+      rgba(26, 94, 61, 0.1),
+      transparent 55%
+    ),
     linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
   pointer-events: none;
 }
@@ -716,7 +756,10 @@ h1 {
   background: var(--surface);
   color: var(--text);
   cursor: pointer;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s, filter 0.2s;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s,
+    filter 0.2s;
 }
 
 .btn:hover {
@@ -758,13 +801,17 @@ h1 {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s;
 }
 
 .stat-card:hover,
 .stat-card:focus-within {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-sm), 0 0 0 2px rgba(241, 90, 36, 0.15);
+  box-shadow:
+    var(--shadow-sm),
+    0 0 0 2px rgba(241, 90, 36, 0.15);
 }
 
 .stat-card__icon {
@@ -996,12 +1043,24 @@ h2 {
 }
 
 /* Uses real images from your IMG-* gallery */
-.tag-with-icon[data-icon="households"]::before { background-image: url("./IMG-20260523-WA0106.jpg"); }
-.tag-with-icon[data-icon="supermarkets"]::before { background-image: url("./IMG-20260523-WA0105.jpg"); }
-.tag-with-icon[data-icon="hotels"]::before { background-image: url("./IMG-20260523-WA0104.jpg"); }
-.tag-with-icon[data-icon="restaurants"]::before { background-image: url("./IMG-20260523-WA0103.jpg"); }
-.tag-with-icon[data-icon="fastfood"]::before { background-image: url("./IMG-20260523-WA0102.jpg"); }
-.tag-with-icon[data-icon="merchants"]::before { background-image: url("./IMG-20260523-WA0101.jpg"); }
+.tag-with-icon[data-icon="households"]::before {
+  background-image: url("./IMG-20260523-WA0106.jpg");
+}
+.tag-with-icon[data-icon="supermarkets"]::before {
+  background-image: url("./IMG-20260523-WA0105.jpg");
+}
+.tag-with-icon[data-icon="hotels"]::before {
+  background-image: url("./IMG-20260523-WA0104.jpg");
+}
+.tag-with-icon[data-icon="restaurants"]::before {
+  background-image: url("./IMG-20260523-WA0103.jpg");
+}
+.tag-with-icon[data-icon="fastfood"]::before {
+  background-image: url("./IMG-20260523-WA0102.jpg");
+}
+.tag-with-icon[data-icon="merchants"]::before {
+  background-image: url("./IMG-20260523-WA0101.jpg");
+}
 
 .client-item {
   display: flex;
@@ -1050,7 +1109,9 @@ h2 {
   color: var(--green);
   opacity: 0;
   transform: scale(0.8);
-  transition: opacity 0.25s, transform 0.25s;
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
   pointer-events: none;
 }
 
@@ -1237,7 +1298,12 @@ h2 {
 }
 
 .panel--form {
-  background: linear-gradient(160deg, rgba(241, 90, 36, 0.06), rgba(26, 94, 61, 0.04), var(--surface));
+  background: linear-gradient(
+    160deg,
+    rgba(241, 90, 36, 0.06),
+    rgba(26, 94, 61, 0.04),
+    var(--surface)
+  );
 }
 
 .form {
@@ -1266,7 +1332,9 @@ textarea {
   font: inherit;
   background: var(--surface);
   color: var(--text);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 input:focus,
@@ -1344,6 +1412,46 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
   gap: 10px;
 }
 
+/* WhatsApp + Facebook floating mini widgets */
+.social-widget {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(84px, calc(84px + env(safe-area-inset-bottom)));
+  z-index: 38;
+}
+
+.social-widget__row {
+  display: flex;
+  gap: 10px;
+}
+
+.social-widget__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  font-weight: 900;
+  font-size: 20px;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s;
+}
+
+.social-widget__btn:hover {
+  text-decoration: none;
+  transform: scale(1.06);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-widget__btn--facebook {
+  color: #1877f2;
+}
+
 .quick-actions__btn {
   width: 52px;
   height: 52px;
@@ -1355,7 +1463,9 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   font-size: 1.35rem;
-  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.2s;
 }
 
 .quick-actions__btn:hover {
@@ -1384,7 +1494,10 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
   font-weight: 800;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
-  transition: opacity 0.3s, transform 0.3s var(--ease), visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s var(--ease),
+    visibility 0.3s;
 }
 
 .back-top:not(.is-visible) {

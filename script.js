@@ -119,7 +119,7 @@ window.addEventListener(
       scrollTicking = false;
     });
   },
-  { passive: true }
+  { passive: true },
 );
 updateScrollUI();
 
@@ -144,7 +144,7 @@ if (sections.length && navLinks.length && "IntersectionObserver" in window) {
         link.setAttribute("aria-current", active ? "page" : "false");
       }
     },
-    { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.15, 0.4] }
+    { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.15, 0.4] },
   );
   for (const section of sections) sectionObserver.observe(section);
 }
@@ -162,7 +162,7 @@ if (revealEls.length && "IntersectionObserver" in window) {
         io.unobserve(entry.target);
       }
     },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
   );
   for (const el of revealEls) io.observe(el);
 } else {
@@ -191,7 +191,9 @@ function openLightbox(index) {
 
 function shiftLightbox(delta) {
   if (!currentGallerySrcs.length) return;
-  lightboxIndex = (lightboxIndex + delta + currentGallerySrcs.length) % currentGallerySrcs.length;
+  lightboxIndex =
+    (lightboxIndex + delta + currentGallerySrcs.length) %
+    currentGallerySrcs.length;
   openLightbox(lightboxIndex);
 }
 
@@ -270,9 +272,12 @@ if (galleryGrid) {
       galleryMore.disabled = true;
       galleryMore.textContent = "Loading…";
 
-  // Append in batches to avoid expensive DOM rebuilds.
+      // Append in batches to avoid expensive DOM rebuilds.
       requestAnimationFrame(() => {
-        const nextCount = Math.min(GALLERY_IMAGES.length, loadedCount + GALLERY_BATCH_SIZE);
+        const nextCount = Math.min(
+          GALLERY_IMAGES.length,
+          loadedCount + GALLERY_BATCH_SIZE,
+        );
         appendGalleryItems(loadedCount, nextCount);
         loadedCount = nextCount;
 
@@ -290,9 +295,15 @@ if (galleryGrid) {
 }
 
 if (lightbox) {
-  lightbox.querySelector(".lightbox__close")?.addEventListener("click", () => lightbox.close());
-  lightbox.querySelector(".lightbox__nav--prev")?.addEventListener("click", () => shiftLightbox(-1));
-  lightbox.querySelector(".lightbox__nav--next")?.addEventListener("click", () => shiftLightbox(1));
+  lightbox
+    .querySelector(".lightbox__close")
+    ?.addEventListener("click", () => lightbox.close());
+  lightbox
+    .querySelector(".lightbox__nav--prev")
+    ?.addEventListener("click", () => shiftLightbox(-1));
+  lightbox
+    .querySelector(".lightbox__nav--next")
+    ?.addEventListener("click", () => shiftLightbox(1));
 
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) lightbox.close();
@@ -309,48 +320,55 @@ const NEWS_POSTS = [
   {
     url: "https://www.facebook.com/share/v/1DuAJmRcXF/",
     title: "Kapena Ni Lelo — Community outreach",
-    content: "Join us this weekend for community distribution and farm tours."
+    content: "Join us this weekend for community distribution and farm tours.",
   },
   {
     url: "https://www.facebook.com/share/r/1R2xHwFMbg/",
     title: "New supply routes announced",
-    content: "We now deliver to additional districts across the Copperbelt. Contact us for rates."
+    content:
+      "We now deliver to additional districts across the Copperbelt. Contact us for rates.",
   },
   {
     url: "https://www.facebook.com/share/r/1H8cvcvJ1o/",
     title: "Training workshop registration",
-    content: "Registration is open for our upcoming poultry management workshop — limited seats available."
+    content:
+      "Registration is open for our upcoming poultry management workshop — limited seats available.",
   },
   {
     url: "https://www.facebook.com/share/r/1CqgZTht7F/",
     title: "Community announcement",
-    content: "Important community update — see full post on our Facebook page."
+    content: "Important community update — see full post on our Facebook page.",
   },
   {
     url: "https://www.facebook.com/share/r/1CqgZTht7F/",
     title: "Community announcement",
-    content: "Important community update — see full post on our Facebook page."
+    content: "Important community update — see full post on our Facebook page.",
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02oWHbjSENvykJfzzjE56qyHYYwiwNj67skGP3yV9dD6WapwX9KSVsqNXMq7V5HYAal&id=61552045534404",
     title: "Latest farm update",
-    content: "Our recent update: please read the announcement on Facebook for details and dates."
+    content:
+      "Our recent update: please read the announcement on Facebook for details and dates.",
   },
   {
     url: "https://www.facebook.com/share/r/18zE5ojYVw/",
     title: "Market day update",
-    content: "Market day schedule and availability — check Facebook for full details."
+    content:
+      "Market day schedule and availability — check Facebook for full details.",
   },
   {
     url: "https://www.facebook.com/photo.php?fbid=122271566744068184&set=a.122101900346068184&type=3&ref=embed_post",
     title: "Farm photo — market update",
-    content: "Photo and short update — open on Facebook for full details."
-  }
+    content: "Photo and short update — open on Facebook for full details.",
+  },
 ];
 
 function withTimeout(promise, ms) {
   return new Promise((resolve, reject) => {
-    const t = window.setTimeout(() => reject(new Error(`Timeout after ${ms}ms`)), ms);
+    const t = window.setTimeout(
+      () => reject(new Error(`Timeout after ${ms}ms`)),
+      ms,
+    );
     promise
       .then((v) => {
         window.clearTimeout(t);
@@ -383,25 +401,25 @@ async function fetchFacebookEmbed(url, timeoutMs = 8000, retries = 2) {
 }
 
 function buildNewsCard(post) {
-  const card = document.createElement('div');
-  card.className = 'news-card';
+  const card = document.createElement("div");
+  card.className = "news-card";
 
   // Header: title + content (if provided)
-  const header = document.createElement('div');
-  header.className = 'news-card__header';
-  const titleEl = document.createElement('h3');
-  titleEl.className = 'news-card__title';
-  titleEl.textContent = post.title || 'Facebook post';
-  const contentEl = document.createElement('p');
-  contentEl.className = 'news-card__content';
-  contentEl.textContent = post.content || '';
+  const header = document.createElement("div");
+  header.className = "news-card__header";
+  const titleEl = document.createElement("h3");
+  titleEl.className = "news-card__title";
+  titleEl.textContent = post.title || "Facebook post";
+  const contentEl = document.createElement("p");
+  contentEl.className = "news-card__content";
+  contentEl.textContent = post.content || "";
   header.appendChild(titleEl);
   if (post.content) header.appendChild(contentEl);
   card.appendChild(header);
 
-  const loading = document.createElement('div');
-  loading.className = 'news-card__loading';
-  loading.textContent = 'Loading Facebook post…';
+  const loading = document.createElement("div");
+  loading.className = "news-card__loading";
+  loading.textContent = "Loading Facebook post…";
   card.appendChild(loading);
 
   // Prefer server-side oEmbed proxy to avoid needing the viewer to be logged in.
@@ -414,20 +432,20 @@ function buildNewsCard(post) {
       // (No further changes needed here.)
 
       if (!data || data.ok !== true || !data.html) {
-        const fallback = document.createElement('div');
-        fallback.className = 'news-fallback';
+        const fallback = document.createElement("div");
+        fallback.className = "news-fallback";
         fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
         card.appendChild(fallback);
         return;
       }
 
       // Facebook returns an HTML snippet. Inject it so the embed renders without login.
-      card.insertAdjacentHTML('beforeend', data.html);
+      card.insertAdjacentHTML("beforeend", data.html);
     })
     .catch(() => {
       loading.remove();
-      const fallback = document.createElement('div');
-      fallback.className = 'news-fallback';
+      const fallback = document.createElement("div");
+      fallback.className = "news-fallback";
       fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
       card.appendChild(fallback);
     });
@@ -436,7 +454,7 @@ function buildNewsCard(post) {
 }
 
 function renderNews(posts) {
-  const grid = document.querySelector('#newsGrid');
+  const grid = document.querySelector("#newsGrid");
   if (!grid) return;
   grid.replaceChildren();
   posts.forEach((p) => grid.appendChild(buildNewsCard(p)));
@@ -445,20 +463,25 @@ function renderNews(posts) {
 // Render initial news posts
 // If env/endpoint is configured, fetch newest posts automatically.
 async function initNews() {
-  const grid = document.querySelector('#newsGrid');
+  const grid = document.querySelector("#newsGrid");
   if (!grid) return;
 
   try {
     // If you add FACEBOOK_PAGE_ACCESS_TOKEN + FACEBOOK_PAGE_ID on Vercel,
     // this will fetch newest posts automatically.
-    const resp = await fetch('/api/facebook-page-posts?limit=8');
+    const resp = await fetch("/api/facebook-page-posts?limit=8");
     if (resp.ok) {
       const data = await resp.json();
-      if (data && data.ok === true && Array.isArray(data.posts) && data.posts.length) {
+      if (
+        data &&
+        data.ok === true &&
+        Array.isArray(data.posts) &&
+        data.posts.length
+      ) {
         const mapped = data.posts.map((p) => ({
           url: p.url,
-          title: p.title || 'Facebook post',
-          content: p.content || '',
+          title: p.title || "Facebook post",
+          content: p.content || "",
         }));
         renderNews(mapped);
         return;
@@ -473,10 +496,11 @@ async function initNews() {
 
 initNews();
 
-
 /* Product filter */
 const productTabs = document.querySelectorAll(".product-tabs__btn");
-const productTiles = Array.from(document.querySelectorAll("#productGrid .tile"));
+const productTiles = Array.from(
+  document.querySelectorAll("#productGrid .tile"),
+);
 
 function filterProducts(filter) {
   for (const tab of productTabs) {
@@ -501,7 +525,9 @@ for (const tab of productTabs) {
 
 /* Service filter */
 const serviceTabs = document.querySelectorAll(".service-tabs__btn");
-const serviceCards = Array.from(document.querySelectorAll("#servicesGrid .service-card"));
+const serviceCards = Array.from(
+  document.querySelectorAll("#servicesGrid .service-card"),
+);
 
 function filterServices(filter) {
   for (const tab of serviceTabs) {
@@ -531,7 +557,9 @@ for (const tab of serviceTabs) {
 document.querySelectorAll("[data-notify]").forEach((btn) => {
   btn.addEventListener("click", () => {
     const service = btn.getAttribute("data-notify") || "New service";
-    const subject = encodeURIComponent(`Kapena Ni Lelo — Interest in ${service}`);
+    const subject = encodeURIComponent(
+      `Kapena Ni Lelo — Interest in ${service}`,
+    );
     const body = encodeURIComponent(
       [
         "Hello Kapena Ni Lelo Poultry Farm,",
@@ -540,7 +568,7 @@ document.querySelectorAll("[data-notify]").forEach((btn) => {
         "",
         "Name:",
         "Phone or email:",
-      ].join("\n")
+      ].join("\n"),
     );
     window.location.href = `mailto:kapananilelo@gmail.com?subject=${subject}&body=${body}`;
   });
@@ -616,7 +644,7 @@ if (quoteForm) {
         "",
         `Name: ${result.nameVal}`,
         `Contact: ${result.contactVal}`,
-      ].join("\n")
+      ].join("\n"),
     );
 
     window.location.href = `mailto:kapananilelo@gmail.com?subject=${subject}&body=${body}`;

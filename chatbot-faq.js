@@ -4,48 +4,48 @@
   const FAQs = [
     {
       q: "What do you sell?",
-      a: "We supply live chickens, chicken meat, chicken pieces (portions), takeaway products, and chicken manure."
+      a: "We supply live chickens, chicken meat, chicken pieces (portions), takeaway products, and chicken manure.",
     },
     {
       q: "Do you sell live chickens or meat?",
-      a: "Yes. We supply live chickens, chicken meat, and chicken pieces/portions (for catering, fast food, and events)."
+      a: "Yes. We supply live chickens, chicken meat, and chicken pieces/portions (for catering, fast food, and events).",
     },
     {
       q: "Do you offer delivery?",
-      a: "Yes. We deliver to clients’ doorsteps across Luanshya and the wider Copperbelt."
+      a: "Yes. We deliver to clients’ doorsteps across Luanshya and the wider Copperbelt.",
     },
     {
       q: "Do you deliver to hotels and schools?",
-      a: "Yes. We supply hotels, schools, restaurants, and retail merchants—delivered to the Copperbelt service area."
+      a: "Yes. We supply hotels, schools, restaurants, and retail merchants—delivered to the Copperbelt service area.",
     },
     {
       q: "What payment methods do you accept?",
-      a: "Cash, mobile money, bank transfer, or cheque. Bank details are listed in the Contact section."
+      a: "Cash, mobile money, bank transfer, or cheque. Bank details are listed in the Contact section.",
     },
     {
       q: "How can I pay?",
-      a: "Cash, mobile money, bank transfer, or cheque. Bank details are available in the Contact section."
+      a: "Cash, mobile money, bank transfer, or cheque. Bank details are available in the Contact section.",
     },
     {
       q: "Where are you located?",
-      a: "Ibenga, Chinondo Road, Luanshya, Zambia."
+      a: "Ibenga, Chinondo Road, Luanshya, Zambia.",
     },
     {
       q: "How do I request a quote?",
-      a: "Use the Contact section and send your message with quantity, delivery date, and delivery location. We’ll respond with pricing and availability."
+      a: "Use the Contact section and send your message with quantity, delivery date, and delivery location. We’ll respond with pricing and availability.",
     },
     {
       q: "Do you offer bulk orders?",
-      a: "Yes—bulk supply is available for institutions like schools, hotels, and restaurants. Send your quantity and delivery date in the Contact section for a quote."
+      a: "Yes—bulk supply is available for institutions like schools, hotels, and restaurants. Send your quantity and delivery date in the Contact section for a quote.",
     },
     {
       q: "What areas do you cover on the Copperbelt?",
-      a: "We’re based in Luanshya and serve the wider Copperbelt with doorstep delivery across the service area."
+      a: "We’re based in Luanshya and serve the wider Copperbelt with doorstep delivery across the service area.",
     },
     {
       q: "Do you offer consultancy or marketing services?",
-      a: "Yes. Poultry consultancy and our marketing platform are available now. Use the Services section or send a quote request in the Contact section to book."
-    }
+      a: "Yes. Poultry consultancy and our marketing platform are available now. Use the Services section or send a quote request in the Contact section to book.",
+    },
   ];
 
   function normalize(s) {
@@ -90,7 +90,7 @@
     if (!best || bestScore < 2) {
       return {
         q: "Unknown",
-        a: "I’m not fully sure yet. Please use the Contact section to request a quote, or message us and we’ll respond with the right details."
+        a: "I’m not fully sure yet. Please use the Contact section to request a quote, or message us and we’ll respond with the right details.",
       };
     }
 
@@ -187,7 +187,10 @@
       panel.hidden = false;
       launch.setAttribute("aria-expanded", "true");
       if (!body.children.length) {
-        addMsg("Hi! I’m the Kapena Ni Lelo assistant. Ask me about delivery, payment, products, or our location.", "bot");
+        addMsg(
+          "Hi! I’m the Kapena Ni Lelo assistant. Ask me about delivery, payment, products, or our location.",
+          "bot",
+        );
       }
       setTimeout(() => input.focus(), 50);
     }
@@ -224,4 +227,3 @@
     ensureChatUI();
   }
 })();
-
