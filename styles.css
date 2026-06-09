@@ -1401,24 +1401,43 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
   font-size: 14px;
 }
 
-/* Quick actions (mobile-friendly) */
+/* Fixed floating widgets stack
+   Order (bottom -> top): quick-actions -> social-widget -> back-top
+*/
+:root {
+  --widget-gap: 10px;
+  --widget-size: 52px;
+  --widget-safe: max(16px, env(safe-area-inset-bottom));
+
+  /* quick-actions bottom */
+  --quick-actions-bottom: var(--widget-safe);
+
+  /* social-widget sits above quick-actions */
+  --social-widget-bottom:
+    calc(var(--widget-safe) + var(--widget-size) + var(--widget-gap));
+
+  /* back-top sits above social-widget */
+  --back-top-bottom:
+    calc(var(--widget-safe) + (var(--widget-size) * 2) + (var(--widget-gap) * 2));
+}
+
+/* Quick actions */
 .quick-actions {
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
-  bottom: max(16px, env(safe-area-inset-bottom));
+  bottom: var(--quick-actions-bottom);
   z-index: 38;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* WhatsApp + Facebook floating mini widgets */
+/* Facebook floating mini widget */
 .social-widget {
-  position: fixed;
-  right: max(16px, env(safe-area-inset-right));
-  bottom: max(84px, calc(84px + env(safe-area-inset-bottom)));
-  z-index: 38;
+  display: none;
 }
+
+
 
 .social-widget__row {
   display: flex;
@@ -1482,7 +1501,7 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
 .back-top {
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
-  bottom: max(88px, calc(88px + env(safe-area-inset-bottom)));
+  bottom: var(--back-top-bottom);
   z-index: 37;
   width: 48px;
   height: 48px;
@@ -1499,6 +1518,7 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
     transform 0.3s var(--ease),
     visibility 0.3s;
 }
+
 
 .back-top:not(.is-visible) {
   opacity: 0;
@@ -1684,13 +1704,14 @@ textarea:user-invalid:not(:focus):not(:placeholder-shown) {
   }
 
   .quick-actions {
-    bottom: max(20px, env(safe-area-inset-bottom));
+    bottom: var(--quick-actions-bottom);
   }
 
   .back-top.is-visible {
-    bottom: max(148px, calc(148px + env(safe-area-inset-bottom)));
+    bottom: var(--back-top-bottom);
   }
 }
+
 
 @media (max-width: 520px) {
   .section {
