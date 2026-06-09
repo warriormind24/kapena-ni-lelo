@@ -84,9 +84,9 @@
       </button>
 
       <div class="faq-chat-panel" role="dialog" aria-label="FAQ chat" aria-modal="false" hidden>
-        <div class="faq-chat-header">
-          <div class="faq-chat-title">FAQ Assistant</div>
-          <button class="faq-chat-close" type="button" aria-label="Close FAQ chat">×</button>
+          <div class="faq-chat-header">
+          <div class="faq-chat-title">Kapena Ni Lelo Assistant</div>
+          <button class="faq-chat-close" type="button" aria-label="Close Kapena Ni Lelo chat">×</button>
         </div>
 
         <div class="faq-chat-body" aria-live="polite"></div>
