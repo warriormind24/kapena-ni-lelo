@@ -7,8 +7,20 @@
       a: "We supply live chickens, chicken meat, chicken pieces (portions), takeaway products, and chicken manure."
     },
     {
+      q: "Do you sell live chickens or meat?",
+      a: "Yes. We supply live chickens, chicken meat, and chicken pieces/portions (for catering, fast food, and events)."
+    },
+    {
       q: "Do you offer delivery?",
       a: "Yes. We deliver to clients’ doorsteps across Luanshya and the wider Copperbelt."
+    },
+    {
+      q: "Do you deliver to hotels and schools?",
+      a: "Yes. We supply hotels, schools, restaurants, and retail merchants—delivered to the Copperbelt service area."
+    },
+    {
+      q: "What payment methods do you accept?",
+      a: "Cash, mobile money, bank transfer, or cheque. Bank details are listed in the Contact section."
     },
     {
       q: "How can I pay?",
@@ -17,6 +29,18 @@
     {
       q: "Where are you located?",
       a: "Ibenga, Chinondo Road, Luanshya, Zambia."
+    },
+    {
+      q: "How do I request a quote?",
+      a: "Use the Contact section and send your message with quantity, delivery date, and delivery location. We’ll respond with pricing and availability."
+    },
+    {
+      q: "Do you offer bulk orders?",
+      a: "Yes—bulk supply is available for institutions like schools, hotels, and restaurants. Send your quantity and delivery date in the Contact section for a quote."
+    },
+    {
+      q: "What areas do you cover on the Copperbelt?",
+      a: "We’re based in Luanshya and serve the wider Copperbelt with doorstep delivery across the service area."
     },
     {
       q: "Do you offer consultancy or marketing services?",
