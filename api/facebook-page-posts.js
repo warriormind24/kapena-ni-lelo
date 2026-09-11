@@ -28,7 +28,12 @@ export default async function handler(req, res) {
       'id',
       'message',
       'created_time',
-      'permalink_url'
+      'permalink_url',
+      'attachments',
+      'attachments.data',
+      'attachments.data.type',
+      'attachments.data.media',
+      'attachments.data.subattachments',
     ].join(',');
 
     // Fetch newest posts from the profile/page feed (Graph API)
@@ -58,13 +63,46 @@ export default async function handler(req, res) {
     }
 
     const posts = (data?.data || [])
-      .map((p) => ({
-        id: p.id,
-        url: p.permalink_url,
-        title: p.message ? p.message.slice(0, 80) : 'Facebook post',
-        content: p.message || '',
-        created_time: p.created_time
-      }))
+      .map((p) => {
+        const mediaUrls = new Set();
+        const attachments = p?.attachments?.data || [];
+        for (const att of attachments) {
+          const type = att?.type || '';
+          const media = att?.media || {};
+          if (type === 'video' || media?.source) {
+            if (media?.source) mediaUrls.add(media.source);
+            if (media?.image?.src) mediaUrls.add(media.image.src);
+            if (media?.image?.uri) mediaUrls.add(media.image.uri);
+            if (media?.image?.url) mediaUrls.add(media.image.url);
+          }
+          if (type === 'photo' || media?.image) {
+            if (media?.image?.src) mediaUrls.add(media.image.src);
+            if (media?.image?.uri) mediaUrls.add(media.image.uri);
+            if (media?.image?.url) mediaUrls.add(media.image.url);
+          }
+          if (att?.image?.src) mediaUrls.add(att.image.src);
+          if (att?.image?.uri) mediaUrls.add(att.image.uri);
+          if (att?.image?.url) mediaUrls.add(att.image.url);
+          const subAttachments = att?.subattachments?.data || [];
+          for (const sub of subAttachments) {
+            const subMedia = sub?.media || {};
+            if (subMedia?.image?.src) mediaUrls.add(subMedia.image.src);
+            if (subMedia?.image?.uri) mediaUrls.add(subMedia.image.uri);
+            if (subMedia?.image?.url) mediaUrls.add(subMedia.image.url);
+            if (subMedia?.source) mediaUrls.add(subMedia.source);
+            if (sub?.image?.src) mediaUrls.add(sub.image.src);
+          }
+        }
+
+        return {
+          id: p.id,
+          url: p.permalink_url,
+          title: p.message ? p.message.slice(0, 80) : 'Facebook post',
+          content: p.message || '',
+          created_time: p.created_time,
+          mediaUrls: Array.from(mediaUrls)
+        };
+      })
       // keep items with URL for embeddable rendering
       .filter((p) => typeof p.url === 'string' && p.url.length > 0);
 

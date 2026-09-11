@@ -169,6 +169,30 @@ if (revealEls.length && "IntersectionObserver" in window) {
   for (const el of revealEls) el.classList.add("is-visible");
 }
 
+async function loadLocalFacebookMedia() {
+  try {
+    const resp = await fetch("./facebook/index.json", { cache: "no-store" });
+    if (!resp.ok) return [];
+    const data = await resp.json();
+    if (!data || !Array.isArray(data.posts)) return [];
+
+    const mediaFiles = [];
+    for (const post of data.posts) {
+      if (Array.isArray(post.mediaUrls)) {
+        for (const url of post.mediaUrls) {
+          const filename = url.split('/').pop().split('?')[0];
+          if (filename) {
+            mediaFiles.push(`./facebook/media/${filename}`);
+          }
+        }
+      }
+    }
+    return mediaFiles;
+  } catch (_) {
+    return [];
+  }
+}
+
 /* Gallery */
 let lightboxIndex = 0;
 let currentGallerySrcs = [];
@@ -262,6 +286,65 @@ function appendGalleryItems(startIndex, endIndex) {
 
 if (galleryGrid) {
   renderGallery(INITIAL_GALLERY);
+
+  loadLocalFacebookMedia().then((fbMedia) => {
+    if (!fbMedia.length || !galleryGrid) return;
+    const start = GALLERY_IMAGES.length;
+    fbMedia.forEach((src, i) => {
+      const fig = document.createElement("figure");
+      fig.className = "gallery__item";
+      fig.tabIndex = 0;
+      fig.setAttribute("role", "button");
+      fig.setAttribute("aria-label", `View media ${start + i + 1}`);
+
+      const isVideo = /\.(mp4|mov|webm)(\?.*)?$/i.test(src) || /\/videos?\//i.test(src);
+
+      if (isVideo) {
+        const video = document.createElement("video");
+        video.src = src;
+        video.controls = true;
+        video.preload = "metadata";
+        video.style.cssText = "width: 100%; height: auto; border-radius: 12px; cursor: pointer;";
+        video.setAttribute("playsinline", "");
+        fig.appendChild(video);
+
+        const open = () => {
+          currentGallerySrcs = [...currentGallerySrcs, src];
+          openLightbox(currentGallerySrcs.length - 1);
+        };
+        fig.addEventListener("click", open);
+        fig.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+          }
+        });
+      } else {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Kapena Ni Lelo poultry farm — Facebook media ${start + i + 1}`;
+        img.width = 640;
+        img.height = 480;
+        img.loading = "lazy";
+        fig.appendChild(img);
+
+        const open = () => {
+          currentGallerySrcs = [...currentGallerySrcs, src];
+          openLightbox(currentGallerySrcs.length - 1);
+        };
+        fig.addEventListener("click", open);
+        fig.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+          }
+        });
+      }
+
+      galleryGrid.appendChild(fig);
+      currentGallerySrcs.push(src);
+    });
+  });
 
   if (galleryMore && GALLERY_IMAGES.length > INITIAL_GALLERY) {
     galleryMore.hidden = false;
@@ -363,48 +446,10 @@ const NEWS_POSTS = [
   },
 ];
 
-function withTimeout(promise, ms) {
-  return new Promise((resolve, reject) => {
-    const t = window.setTimeout(
-      () => reject(new Error(`Timeout after ${ms}ms`)),
-      ms,
-    );
-    promise
-      .then((v) => {
-        window.clearTimeout(t);
-        resolve(v);
-      })
-      .catch((err) => {
-        window.clearTimeout(t);
-        reject(err);
-      });
-  });
-}
-
-async function fetchFacebookEmbed(url, timeoutMs = 8000, retries = 2) {
-  let lastErr;
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    try {
-      const p = fetch(`/api/facebook-embed?url=${encodeURIComponent(url)}`);
-      const r = await withTimeout(p, timeoutMs);
-      if (!r.ok) throw new Error(`Request failed: ${r.status}`);
-      return await r.json();
-    } catch (err) {
-      lastErr = err;
-      if (attempt < retries) {
-        await new Promise((res) => setTimeout(res, 350 * (attempt + 1)));
-        continue;
-      }
-    }
-  }
-  throw lastErr;
-}
-
-function buildNewsCard(post) {
+function buildNewsCard(post, mediaUrls = []) {
   const card = document.createElement("div");
   card.className = "news-card";
 
-  // Header: title + content (if provided)
   const header = document.createElement("div");
   header.className = "news-card__header";
   const titleEl = document.createElement("h3");
@@ -417,38 +462,59 @@ function buildNewsCard(post) {
   if (post.content) header.appendChild(contentEl);
   card.appendChild(header);
 
-  const loading = document.createElement("div");
-  loading.className = "news-card__loading";
-  loading.textContent = "Loading Facebook post…";
-  card.appendChild(loading);
+  if (mediaUrls.length > 0) {
+    const mediaGrid = document.createElement("div");
+    mediaGrid.style.cssText = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px;";
 
-  // Prefer server-side oEmbed proxy to avoid needing the viewer to be logged in.
-  // (Works when deployed on Vercel with an /api/facebook-embed endpoint.)
-  fetchFacebookEmbed(post.url, 8000, 2)
-    .then((data) => {
-      loading.remove();
+    for (const src of mediaUrls) {
+      const figure = document.createElement("figure");
+      figure.style.cssText = "margin: 0";
 
-      // If Facebook returns HTML, it will render; otherwise fall back.
-      // (No further changes needed here.)
+      const isVideo = /\.(mp4|mov|webm)(\?.*)?$/i.test(src) || /\/videos?\//i.test(src);
 
-      if (!data || data.ok !== true || !data.html) {
-        const fallback = document.createElement("div");
-        fallback.className = "news-fallback";
-        fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
-        card.appendChild(fallback);
-        return;
+      if (isVideo) {
+        const video = document.createElement("video");
+        video.src = src;
+        video.controls = true;
+        video.preload = "metadata";
+        video.style.cssText = "width: 100%; border-radius: 12px;";
+        video.setAttribute("playsinline", "");
+        figure.appendChild(video);
+      } else {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = post.title || "Facebook media";
+        img.width = 640;
+        img.height = 480;
+        img.style.cssText = "width: 100%; height: auto; border-radius: 12px; cursor: pointer;";
+        img.loading = "lazy";
+
+        const openLightboxFromNews = () => {
+          const idx = currentGallerySrcs.indexOf(src);
+          if (idx >= 0) {
+            openLightbox(idx);
+          } else {
+            currentGallerySrcs = [src];
+            openLightbox(0);
+          }
+        };
+
+        img.addEventListener("click", openLightboxFromNews);
+        figure.appendChild(img);
       }
 
-      // Facebook returns an HTML snippet. Inject it so the embed renders without login.
-      card.insertAdjacentHTML("beforeend", data.html);
-    })
-    .catch(() => {
-      loading.remove();
-      const fallback = document.createElement("div");
-      fallback.className = "news-fallback";
-      fallback.innerHTML = `Post: <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open on Facebook</a>`;
-      card.appendChild(fallback);
-    });
+      mediaGrid.appendChild(figure);
+    }
+
+    card.appendChild(mediaGrid);
+  }
+
+  if (post.url) {
+    const link = document.createElement("p");
+    link.style.cssText = "margin-top: 10px";
+    link.innerHTML = `<a href="${post.url}" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">View original on Facebook →</a>`;
+    card.appendChild(link);
+  }
 
   return card;
 }
@@ -457,7 +523,28 @@ function renderNews(posts) {
   const grid = document.querySelector("#newsGrid");
   if (!grid) return;
   grid.replaceChildren();
-  posts.forEach((p) => grid.appendChild(buildNewsCard(p)));
+  posts.forEach((p) => {
+    const mediaUrls = Array.isArray(p.mediaUrls) ? p.mediaUrls : [];
+    grid.appendChild(buildNewsCard(p, mediaUrls));
+  });
+}
+
+async function loadLocalFacebookPosts() {
+  try {
+    const resp = await fetch("./facebook/index.json", { cache: "no-store" });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    if (!data || !Array.isArray(data.posts) || data.posts.length === 0) return null;
+
+    return data.posts.map((p) => ({
+      url: p.permalink_url || "",
+      title: (p.message || p.story || "Facebook post").slice(0, 80),
+      content: p.message || p.story || "",
+      mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
+    }));
+  } catch (_) {
+    return null;
+  }
 }
 
 // Render initial news posts
@@ -466,9 +553,9 @@ async function initNews() {
   const grid = document.querySelector("#newsGrid");
   if (!grid) return;
 
+  let posts = null;
+
   try {
-    // If you add FACEBOOK_PAGE_ACCESS_TOKEN + FACEBOOK_PAGE_ID on Vercel,
-    // this will fetch newest posts automatically.
     const resp = await fetch("/api/facebook-page-posts?limit=8");
     if (resp.ok) {
       const data = await resp.json();
@@ -478,20 +565,30 @@ async function initNews() {
         Array.isArray(data.posts) &&
         data.posts.length
       ) {
-        const mapped = data.posts.map((p) => ({
+        posts = data.posts.map((p) => ({
           url: p.url,
           title: p.title || "Facebook post",
           content: p.content || "",
+          mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
         }));
-        renderNews(mapped);
-        return;
       }
     }
   } catch (_) {
-    // fall through to hardcoded posts
+    // fall through
   }
 
-  renderNews(NEWS_POSTS);
+  if (!posts) {
+    posts = await loadLocalFacebookPosts();
+  }
+
+  if (!posts) {
+    renderNews(
+      NEWS_POSTS.map((p) => ({ ...p, mediaUrls: [] }))
+    );
+    return;
+  }
+
+  renderNews(posts);
 }
 
 initNews();
