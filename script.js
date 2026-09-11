@@ -516,6 +516,13 @@ function buildNewsCard(post, mediaUrls = []) {
     card.appendChild(link);
   }
 
+  if (post.iframe) {
+    const wrapper = document.createElement("div");
+    wrapper.style.cssText = "margin-top: 14px; display: flex; justify-content: center;";
+    wrapper.innerHTML = post.iframe;
+    card.appendChild(wrapper);
+  }
+
   return card;
 }
 
@@ -541,6 +548,7 @@ async function loadLocalFacebookPosts() {
       title: (p.message || p.story || "Facebook post").slice(0, 80),
       content: p.message || p.story || "",
       mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
+      iframe: p.iframe || "",
     }));
   } catch (_) {
     return null;
@@ -570,6 +578,7 @@ async function initNews() {
           title: p.title || "Facebook post",
           content: p.content || "",
           mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
+          iframe: p.iframe || "",
         }));
       }
     }
