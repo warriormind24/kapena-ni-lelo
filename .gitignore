@@ -2,3 +2,4 @@
 *.pptx
 tools/
 .kilo/
+node_modules/
