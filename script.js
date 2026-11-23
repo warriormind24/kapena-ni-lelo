@@ -401,197 +401,365 @@ if (lightbox) {
 /* News: render embedded Facebook posts supplied by links */
 const NEWS_POSTS = [
   {
+    url: "https://www.facebook.com/agricoopawards/posts/pfbid02XotytKsRhRdvh7nci3YoZsjtN9P5oMtRHtYiu8cP6KEEamDrtpJprGrcNx5GvkGcl",
+    title: "The Poultry Farmer of the Year crown handover",
+    content:
+      "2025 winner Fenny's Poultry hands the crown to 2026 winner Kapena Ni Lelo / Reuben Ngoma.",
+    dateLabel: "7 November 2026",
+    mediaUrls: ["./facebook/media/agricoop-awards-2026.jpg"],
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fagricoopawards%2Fposts%2Fpfbid02XotytKsRhRdvh7nci3YoZsjtN9P5oMtRHtYiu8cP6KEEamDrtpJprGrcNx5GvkGcl&show_text=true&width=500" width="500" height="859" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0msNQksNjGLefe7HGHNqDjzJ7toLqPRKWjjjvcdMkMFMRsWe6mXWUnmR1StDVAHJwl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Nevaeh graduates to Grade 1",
+    content:
+      "Congratulations to Nevaeh The Young Farmer as she graduates from Reception class to Grade 1. The team is proud of you.",
+    dateLabel: "October 2026 (approx.)",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0msNQksNjGLefe7HGHNqDjzJ7toLqPRKWjjjvcdMkMFMRsWe6mXWUnmR1StDVAHJwl%26id%3D61552045534404&show_text=true&width=500" width="500" height="441" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0e49Y7oE2Xq69Ug8VTpK9MfuAyCoej7gRP3P2HvFzAhy8qovfTxhb7bbPR7UU8VtXl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Keeping poultry safe during long-distance delivery",
+    content:
+      "How we are coping with the heat during long-distance deliveries to help keep the birds in good condition.",
+    dateLabel: "October 2026 (approx.)",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0e49Y7oE2Xq69Ug8VTpK9MfuAyCoej7gRP3P2HvFzAhy8qovfTxhb7bbPR7UU8VtXl%26id%3D61552045534404&show_text=true&width=500" width="500" height="609" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid09L3C3tzKKsKnV355kBwZnp5YCFA37YAv2ZjrwWm8xvukZfyZr7sbwv8cvPR5Tmufl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Get advice before investing in poultry",
+    content:
+      "Consult before investing in poultry. Having money alone is no assurance of success.",
+    dateLabel: "Date not listed",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid09L3C3tzKKsKnV355kBwZnp5YCFA37YAv2ZjrwWm8xvukZfyZr7sbwv8cvPR5Tmufl%26id%3D61552045534404&show_text=true&width=500" width="500" height="634" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02KLgVAMc5YwPmqY2LN61MqB9RbMXwdKS1EcdGqgm1y8oCAWCWNpmdQhHkAaLamYjl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "A shout-out from the 2025 poultry award winner",
+    content: "Fenny's Poultry, the 2025 Poultry Farmer of the Year, gave us a big hype.",
+    dateLabel: "November 2026 (approx.)",
+    mediaUrls: ["./facebook/media/agricoop-awards-2026.jpg"],
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02KLgVAMc5YwPmqY2LN61MqB9RbMXwdKS1EcdGqgm1y8oCAWCWNpmdQhHkAaLamYjl%26id%3D61552045534404&show_text=true&width=500" width="500" height="821" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02qMQbUajdKQz4s6jFoEvzafwJqYp1ZA3NBn5ej7HnN24HyfF3AaT2piBiRSrKqcfyl&id=61552045534404",
-    title: "Poultry Farmer of the Year 2026",
+    title: "Celebrating Poultry Farmer of the Year 2026",
     content:
       "Our youngest team member, Nevaeh The Young Farmer was the happiest to see our Managing Director awarded Poultry Farmer of The Year 2026.",
+    dateLabel: "9 November 2026",
     mediaUrls: ["./facebook/media/poultry-farmer-of-the-year-2026.jpg"],
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02qMQbUajdKQz4s6jFoEvzafwJqYp1ZA3NBn5ej7HnN24HyfF3AaT2piBiRSrKqcfyl%26id%3D61552045534404&show_text=true&width=500" width="500" height="609" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/reel/2996465130746308/",
-    title: "Latest Facebook Reel",
+    title: "Still celebrating the award",
+    content: "We are still feeling the award. Enjoy your weekend, friends.",
+    dateLabel: "Date not listed",
+    mediaUrls: ["./facebook/media/award-reel-thumbnail.jpg"],
     iframe:
       '<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2996465130746308%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02r7dwWfQMJi6Mf5bBN7oSYv2Cm4X6t8VfNn34B6q7QyycxrJoJMqGQxGRWQzddpabl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Keep poultry housing clean and comfortable",
+    content:
+      "Change bedding regularly. Keeping the poultry house clean and comfortable helps reduce disease outbreaks.",
+    dateLabel: "Date not listed",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02r7dwWfQMJi6Mf5bBN7oSYv2Cm4X6t8VfNn34B6q7QyycxrJoJMqGQxGRWQzddpabl%26id%3D61552045534404&show_text=true&width=500" width="500" height="653" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0pojmNGQFMy4eRQXJ7Jk6kxrimm35GWKEMt6mTZifFn6c2zAxjTCACVx5P18zDGFVl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Plan for the Christmas and New Year batch",
+    content:
+      "Christmas and New Year batch is the equaliser. Make sure you grow and sell it well. Happy weekend, farmers.",
+    dateLabel: "20 November 2026",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0pojmNGQFMy4eRQXJ7Jk6kxrimm35GWKEMt6mTZifFn6c2zAxjTCACVx5P18zDGFVl%26id%3D61552045534404&show_text=true&width=500" width="500" height="634" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
   {
     url: "https://www.facebook.com/permalink.php?story_fbid=pfbid09PKDXydZBAU2XrL7bHUE8MJfowHgtXDN4ZYRdjty2qpjfHgNo1hMzBiMqh8VB7mwl&id=61552045534404",
-    title: "Latest Facebook post",
+    title: "Why broiler farmers should avoid credit sales",
+    content:
+      "For a repeatable broiler cycle, avoid selling on credit unless you can manage it as a business decision.",
+    dateLabel: "20 November 2026",
     iframe:
       '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid09PKDXydZBAU2XrL7bHUE8MJfowHgtXDN4ZYRdjty2qpjfHgNo1hMzBiMqh8VB7mwl%26id%3D61552045534404&show_text=true&width=500" width="500" height="392" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
   },
-  {
-    url: "https://www.facebook.com/share/v/1DuAJmRcXF/",
-    title: "Kapena Ni Lelo — Community outreach",
-    content: "Join us this weekend for community distribution and farm tours.",
-  },
-  {
-    url: "https://www.facebook.com/share/r/1R2xHwFMbg/",
-    title: "New supply routes announced",
-    content:
-      "We now deliver to additional districts across the Copperbelt. Contact us for rates.",
-  },
-  {
-    url: "https://www.facebook.com/share/r/1H8cvcvJ1o/",
-    title: "Training workshop registration",
-    content:
-      "Registration is open for our upcoming poultry management workshop — limited seats available.",
-  },
-  {
-    url: "https://www.facebook.com/share/r/1CqgZTht7F/",
-    title: "Community announcement",
-    content: "Important community update — see full post on our Facebook page.",
-  },
-  {
-    url: "https://www.facebook.com/share/r/1CqgZTht7F/",
-    title: "Community announcement",
-    content: "Important community update — see full post on our Facebook page.",
-  },
-  {
-    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02oWHbjSENvykJfzzjE56qyHYYwiwNj67skGP3yV9dD6WapwX9KSVsqNXMq7V5HYAal&id=61552045534404",
-    title: "Latest farm update",
-    content:
-      "Our recent update: please read the announcement on Facebook for details and dates.",
-  },
-  {
-    url: "https://www.facebook.com/share/r/18zE5ojYVw/",
-    title: "Market day update",
-    content:
-      "Market day schedule and availability — check Facebook for full details.",
-  },
-  {
-    url: "https://www.facebook.com/photo.php?fbid=122271566744068184&set=a.122101900346068184&type=3&ref=embed_post",
-    title: "Farm photo — market update",
-    content: "Photo and short update — open on Facebook for full details.",
-  },
 ];
 
-function buildNewsCard(post, mediaUrls = []) {
-  const card = document.createElement("div");
-  card.className = "news-card";
+const NEWS_PAGE_SIZE = 6;
+let newsPosts = [];
+let renderedNewsCount = 0;
 
-  const header = document.createElement("div");
-  header.className = "news-card__header";
-  const titleEl = document.createElement("h3");
-  titleEl.className = "news-card__title";
-  titleEl.textContent = post.title || "Facebook post";
-  const contentEl = document.createElement("p");
-  contentEl.className = "news-card__content";
-  contentEl.textContent = post.content || "";
-  header.appendChild(titleEl);
-  if (post.content) header.appendChild(contentEl);
-  card.appendChild(header);
+function getNewsTitle(post) {
+  const title = String(post.title || "").trim();
+  if (title && !/^(facebook post|latest facebook post)$/i.test(title)) {
+    return title;
+  }
 
-  if (mediaUrls.length > 0) {
-    const mediaGrid = document.createElement("div");
-    mediaGrid.style.cssText = "display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 12px;";
+  const content = String(post.content || post.message || "").trim();
+  if (!content) return "Facebook update";
+  const firstLine = content.split(/[\n.!?]/, 1)[0].trim();
+  return firstLine.length > 72 ? `${firstLine.slice(0, 69).trim()}…` : firstLine;
+}
 
-    for (const src of mediaUrls) {
-      const figure = document.createElement("figure");
-      figure.style.cssText = "margin: 0";
+function getNewsDate(post) {
+  if (post.dateLabel) return post.dateLabel;
+  if (!post.created_time) return "Date not listed";
+  const date = new Date(post.created_time);
+  if (!Number.isFinite(date.getTime())) return "Date not listed";
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
 
-      const isVideo = /\.(mp4|mov|webm)(\?.*)?$/i.test(src) || /\/videos?\//i.test(src);
+function getFacebookEmbedConfig(post) {
+  let src = "";
+  let width = 500;
+  let height = 560;
+  let isVideo = false;
 
-      if (isVideo) {
-        const video = document.createElement("video");
-        video.src = src;
-        video.controls = true;
-        video.preload = "metadata";
-        video.style.cssText = "width: 100%; border-radius: 12px;";
-        video.setAttribute("playsinline", "");
-        figure.appendChild(video);
-      } else {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = post.title || "Facebook media";
-        img.width = 640;
-        img.height = 480;
-        img.style.cssText = "width: 100%; height: auto; border-radius: 12px; cursor: pointer;";
-        img.loading = "lazy";
-
-        const openLightboxFromNews = () => {
-          const idx = currentGallerySrcs.indexOf(src);
-          if (idx >= 0) {
-            openLightbox(idx);
-          } else {
-            currentGallerySrcs = [src];
-            openLightbox(0);
-          }
-        };
-
-        img.addEventListener("click", openLightboxFromNews);
-        figure.appendChild(img);
-      }
-
-      mediaGrid.appendChild(figure);
+  if (post.iframe) {
+    const srcMatch = String(post.iframe).match(
+      /<iframe\b[^>]*\bsrc=(["'])(.*?)\1/i,
+    );
+    if (!srcMatch) {
+      console.warn("Facebook embed markup has no iframe source.", post.url);
+      return null;
     }
 
-    card.appendChild(mediaGrid);
+    src = srcMatch[2];
+    const widthMatch = String(post.iframe).match(/\bwidth=["'](\d+)["']/i);
+    const heightMatch = String(post.iframe).match(/\bheight=["'](\d+)["']/i);
+    if (widthMatch) width = Number(widthMatch[1]);
+    if (heightMatch) height = Number(heightMatch[1]);
+  } else if (post.url) {
+    try {
+      const postUrl = new URL(post.url);
+      const allowedHosts = ["facebook.com", "www.facebook.com", "web.facebook.com"];
+      if (postUrl.protocol !== "https:" || !allowedHosts.includes(postUrl.hostname)) {
+        console.warn("Skipping Facebook embed for an unsupported URL.", post.url);
+        return null;
+      }
+
+      isVideo = /\/(?:reel|videos?)(?:\/|$)/i.test(postUrl.pathname);
+      const embedUrl = new URL(
+        `https://www.facebook.com/plugins/${isVideo ? "video" : "post"}.php`,
+      );
+      embedUrl.searchParams.set("href", postUrl.href);
+      embedUrl.searchParams.set("show_text", "true");
+      embedUrl.searchParams.set("width", String(width));
+      src = embedUrl.href;
+    } catch (error) {
+      console.warn("Could not build Facebook embed URL.", error);
+      return null;
+    }
+  } else {
+    return null;
+  }
+
+  try {
+    const embedUrl = new URL(src);
+    if (
+      embedUrl.protocol !== "https:" ||
+      !["www.facebook.com", "web.facebook.com"].includes(embedUrl.hostname) ||
+      !/^\/plugins\/(?:post|video)\.php$/.test(embedUrl.pathname)
+    ) {
+      console.warn("Skipping an unsupported Facebook embed URL.", src);
+      return null;
+    }
+    isVideo = isVideo || embedUrl.pathname.endsWith("/video.php");
+  } catch (error) {
+    console.warn("Could not parse Facebook embed URL.", error);
+    return null;
+  }
+
+  if (!Number.isFinite(width) || width < 200 || width > 1000) width = 500;
+  if (!Number.isFinite(height) || height < 250 || height > 1600) height = 560;
+  return { src, width, height, isVideo };
+}
+
+function buildNewsCard(post, postIndex) {
+  const card = document.createElement("article");
+  card.className = "news-card";
+
+  const title = getNewsTitle(post);
+  const mediaUrls = Array.isArray(post.mediaUrls) ? post.mediaUrls : [];
+  const videoUrl = mediaUrls.find((src) =>
+    /\.(mp4|mov|webm)(\?.*)?$/i.test(src),
+  );
+  const localVideoThumbnail =
+    videoUrl && /^\.\/facebook\/media\/[^?#]+\.(mp4|mov|webm)(\?.*)?$/i.test(videoUrl)
+      ? videoUrl.replace(/\.(mp4|mov|webm)(\?.*)?$/i, ".jpg")
+      : "";
+  const mediaSrc =
+    post.thumbnailUrl ||
+    mediaUrls.find((src) => !/\.(mp4|mov|webm)(\?.*)?$/i.test(src)) ||
+    localVideoThumbnail;
+  const hasVideo =
+    Boolean(videoUrl) ||
+    /\/(?:reel|videos?)(?:\/|$)/i.test(post.url || "");
+
+  const visual = document.createElement("div");
+  visual.className = "news-card__visual";
+  const showBrandImage = () => {
+    visual.classList.add("news-card__visual--brand");
+    const brandImage = document.createElement("img");
+    brandImage.className = "news-card__brand-image";
+    brandImage.src = "./logo.jpeg";
+    brandImage.alt = "";
+    brandImage.loading = "lazy";
+    visual.appendChild(brandImage);
+  };
+  if (mediaSrc) {
+    const image = document.createElement("img");
+    image.className = "news-card__image";
+    if (mediaSrc === localVideoThumbnail) {
+      image.classList.add("news-card__image--video");
+    }
+    image.src = mediaSrc;
+    image.alt = title;
+    image.loading = postIndex < 3 ? "eager" : "lazy";
+    image.decoding = "async";
+    image.addEventListener(
+      "error",
+      () => {
+        console.warn("News image failed to load; showing the farm logo.", mediaSrc);
+        image.remove();
+        showBrandImage();
+      },
+      { once: true },
+    );
+    visual.appendChild(image);
+  } else {
+    showBrandImage();
+  }
+  if (hasVideo || !mediaSrc) {
+    const visualLabel = document.createElement("span");
+    visualLabel.className = "news-card__visual-label";
+    visualLabel.textContent = hasVideo ? "Facebook video" : "Facebook update";
+    visual.appendChild(visualLabel);
+  }
+
+  const body = document.createElement("div");
+  body.className = "news-card__body";
+
+  const date = document.createElement("time");
+  date.className = "news-card__date";
+  date.textContent = getNewsDate(post);
+  if (post.created_time) date.dateTime = post.created_time;
+
+  const titleEl = document.createElement("h3");
+  titleEl.className = "news-card__title";
+  titleEl.textContent = title;
+
+  const contentEl = document.createElement("p");
+  contentEl.className = "news-card__content";
+  const excerpt = String(
+    post.content || post.message || "Open the Facebook post to read the full update.",
+  )
+    .replace(/\s+/g, " ")
+    .trim();
+  contentEl.textContent =
+    excerpt.length > 150 ? `${excerpt.slice(0, 147).trim()}…` : excerpt;
+
+  body.append(date, titleEl, contentEl);
+
+  const actions = document.createElement("div");
+  actions.className = "news-card__actions";
+  const embed = getFacebookEmbedConfig(post);
+  if (embed) {
+    const loadButton = document.createElement("button");
+    loadButton.className = "news-card__load";
+    loadButton.type = "button";
+    loadButton.textContent = embed.isVideo
+      ? "Load Facebook video"
+      : "Load Facebook post";
+    loadButton.setAttribute("aria-expanded", "false");
+    const embedId = `news-post-${postIndex}-embed`;
+    loadButton.setAttribute("aria-controls", embedId);
+    loadButton.addEventListener("click", () => {
+      const currentFrame = card.querySelector(`#${embedId}`);
+      if (currentFrame) {
+        currentFrame.remove();
+        loadButton.setAttribute("aria-expanded", "false");
+        loadButton.textContent = embed.isVideo
+          ? "Load Facebook video"
+          : "Load Facebook post";
+        return;
+      }
+
+      const frame = document.createElement("iframe");
+      frame.className = "news-card__iframe";
+      frame.id = embedId;
+      frame.src = embed.src;
+      frame.width = String(embed.width);
+      frame.height = String(embed.height);
+      frame.title = `${title} — Facebook`;
+      frame.loading = "lazy";
+      frame.setAttribute("scrolling", "no");
+      frame.setAttribute("frameborder", "0");
+      frame.setAttribute("allowfullscreen", "true");
+      frame.setAttribute(
+        "allow",
+        "autoplay; clipboard-write; encrypted-media; picture-in-picture",
+      );
+      card.insertBefore(frame, actions);
+      loadButton.setAttribute("aria-expanded", "true");
+      loadButton.textContent = "Hide embed";
+    });
+    actions.appendChild(loadButton);
   }
 
   if (post.url) {
-    const link = document.createElement("p");
-    link.style.cssText = "margin-top: 10px";
-    link.innerHTML = `<a href="${post.url}" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: none; font-weight: 600;">View original on Facebook →</a>`;
-    card.appendChild(link);
+    const link = document.createElement("a");
+    link.className = "news-card__link";
+    link.href = post.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "View on Facebook";
+    actions.appendChild(link);
   }
 
-  if (post.iframe) {
-    const wrapper = document.createElement("div");
-    wrapper.style.cssText = "margin-top: 14px; display: flex; justify-content: center;";
-    wrapper.innerHTML = post.iframe;
-    card.appendChild(wrapper);
-  }
-
+  card.append(visual, body, actions);
   return card;
+}
+
+function renderMoreNews() {
+  const grid = document.querySelector("#newsGrid");
+  const loadMore = document.querySelector("#newsLoadMore");
+  if (!grid) return;
+
+  const nextCount = Math.min(renderedNewsCount + NEWS_PAGE_SIZE, newsPosts.length);
+  for (let i = renderedNewsCount; i < nextCount; i += 1) {
+    grid.appendChild(buildNewsCard(newsPosts[i], i));
+  }
+  renderedNewsCount = nextCount;
+  if (loadMore) loadMore.hidden = renderedNewsCount >= newsPosts.length;
 }
 
 function renderNews(posts) {
   const grid = document.querySelector("#newsGrid");
   if (!grid) return;
+  newsPosts = posts;
+  renderedNewsCount = 0;
   grid.replaceChildren();
-  posts.forEach((p) => {
-    const mediaUrls = Array.isArray(p.mediaUrls) ? p.mediaUrls : [];
-    grid.appendChild(buildNewsCard(p, mediaUrls));
-  });
+  renderMoreNews();
 }
+
+document
+  .querySelector("#newsLoadMore")
+  ?.addEventListener("click", renderMoreNews);
 
 async function loadLocalFacebookPosts() {
   try {
@@ -602,9 +770,12 @@ async function loadLocalFacebookPosts() {
 
     return data.posts.map((p) => ({
       url: p.permalink_url || "",
-      title: (p.message || p.story || "Facebook post").slice(0, 80),
+      title: p.title || "",
       content: p.message || p.story || "",
+      created_time: p.created_time || "",
+      dateLabel: p.dateLabel || "",
       mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
+      thumbnailUrl: p.thumbnailUrl || "",
       iframe: p.iframe || "",
     }));
   } catch (_) {
@@ -621,7 +792,7 @@ async function initNews() {
   let posts = null;
 
   try {
-    const resp = await fetch("/api/facebook-page-posts?limit=8");
+    const resp = await fetch("/api/facebook-page-posts?limit=25");
     if (resp.ok) {
       const data = await resp.json();
       if (
@@ -632,9 +803,11 @@ async function initNews() {
       ) {
         posts = data.posts.map((p) => ({
           url: p.url,
-          title: p.title || "Facebook post",
+          title: "",
           content: p.content || "",
+          created_time: p.created_time || "",
           mediaUrls: Array.isArray(p.mediaUrls) ? p.mediaUrls : [],
+          thumbnailUrl: p.thumbnailUrl || "",
           iframe: p.iframe || "",
         }));
       }
@@ -648,9 +821,7 @@ async function initNews() {
   }
 
   if (!posts) {
-    renderNews(
-      NEWS_POSTS.map((p) => ({ ...p, mediaUrls: [] }))
-    );
+    renderNews(NEWS_POSTS);
     return;
   }
 
