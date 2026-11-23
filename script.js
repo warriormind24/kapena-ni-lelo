@@ -401,6 +401,63 @@ if (lightbox) {
 /* News: render embedded Facebook posts supplied by links */
 const NEWS_POSTS = [
   {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0msNQksNjGLefe7HGHNqDjzJ7toLqPRKWjjjvcdMkMFMRsWe6mXWUnmR1StDVAHJwl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0msNQksNjGLefe7HGHNqDjzJ7toLqPRKWjjjvcdMkMFMRsWe6mXWUnmR1StDVAHJwl%26id%3D61552045534404&show_text=true&width=500" width="500" height="441" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0e49Y7oE2Xq69Ug8VTpK9MfuAyCoej7gRP3P2HvFzAhy8qovfTxhb7bbPR7UU8VtXl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0e49Y7oE2Xq69Ug8VTpK9MfuAyCoej7gRP3P2HvFzAhy8qovfTxhb7bbPR7UU8VtXl%26id%3D61552045534404&show_text=true&width=500" width="500" height="609" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid09L3C3tzKKsKnV355kBwZnp5YCFA37YAv2ZjrwWm8xvukZfyZr7sbwv8cvPR5Tmufl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid09L3C3tzKKsKnV355kBwZnp5YCFA37YAv2ZjrwWm8xvukZfyZr7sbwv8cvPR5Tmufl%26id%3D61552045534404&show_text=true&width=500" width="500" height="634" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02KLgVAMc5YwPmqY2LN61MqB9RbMXwdKS1EcdGqgm1y8oCAWCWNpmdQhHkAaLamYjl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02KLgVAMc5YwPmqY2LN61MqB9RbMXwdKS1EcdGqgm1y8oCAWCWNpmdQhHkAaLamYjl%26id%3D61552045534404&show_text=true&width=500" width="500" height="821" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02qMQbUajdKQz4s6jFoEvzafwJqYp1ZA3NBn5ej7HnN24HyfF3AaT2piBiRSrKqcfyl&id=61552045534404",
+    title: "Poultry Farmer of the Year 2026",
+    content:
+      "Our youngest team member, Nevaeh The Young Farmer was the happiest to see our Managing Director awarded Poultry Farmer of The Year 2026.",
+    mediaUrls: ["./facebook/media/poultry-farmer-of-the-year-2026.jpg"],
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02qMQbUajdKQz4s6jFoEvzafwJqYp1ZA3NBn5ej7HnN24HyfF3AaT2piBiRSrKqcfyl%26id%3D61552045534404&show_text=true&width=500" width="500" height="609" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/reel/2996465130746308/",
+    title: "Latest Facebook Reel",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2996465130746308%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid02r7dwWfQMJi6Mf5bBN7oSYv2Cm4X6t8VfNn34B6q7QyycxrJoJMqGQxGRWQzddpabl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02r7dwWfQMJi6Mf5bBN7oSYv2Cm4X6t8VfNn34B6q7QyycxrJoJMqGQxGRWQzddpabl%26id%3D61552045534404&show_text=true&width=500" width="500" height="653" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid0pojmNGQFMy4eRQXJ7Jk6kxrimm35GWKEMt6mTZifFn6c2zAxjTCACVx5P18zDGFVl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0pojmNGQFMy4eRQXJ7Jk6kxrimm35GWKEMt6mTZifFn6c2zAxjTCACVx5P18zDGFVl%26id%3D61552045534404&show_text=true&width=500" width="500" height="634" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
+    url: "https://www.facebook.com/permalink.php?story_fbid=pfbid09PKDXydZBAU2XrL7bHUE8MJfowHgtXDN4ZYRdjty2qpjfHgNo1hMzBiMqh8VB7mwl&id=61552045534404",
+    title: "Latest Facebook post",
+    iframe:
+      '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid09PKDXydZBAU2XrL7bHUE8MJfowHgtXDN4ZYRdjty2qpjfHgNo1hMzBiMqh8VB7mwl%26id%3D61552045534404&show_text=true&width=500" width="500" height="392" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>',
+  },
+  {
     url: "https://www.facebook.com/share/v/1DuAJmRcXF/",
     title: "Kapena Ni Lelo — Community outreach",
     content: "Join us this weekend for community distribution and farm tours.",
